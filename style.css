@@ -35,10 +35,7 @@ nav {
   align-items: center;
   justify-content: space-between;
   padding: 0 var(--pad-x);
-  background: rgba(255,255,255,0.96);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border-bottom: 1px solid var(--c-border);
+  background: transparent;
 }
 
 .nav-name {
@@ -83,9 +80,18 @@ nav {
   flex-shrink: 0;
 }
 
+/* Invisible bridge so cursor doesn't lose hover moving into dropdown */
+.has-dropdown::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 0; right: 0;
+  height: 14px;
+}
+
 .dropdown {
   position: absolute;
-  top: calc(100% + 18px);
+  top: calc(100% + 14px);
   left: -16px;
   list-style: none;
   background: #fff;
@@ -94,7 +100,7 @@ nav {
   padding: 6px 0;
   opacity: 0;
   pointer-events: none;
-  transform: translateY(-6px);
+  transform: translateY(-4px);
   transition: opacity 0.18s ease, transform 0.18s ease;
   box-shadow: 0 8px 28px rgba(0,0,0,0.07);
 }
